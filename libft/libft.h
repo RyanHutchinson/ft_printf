@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhutchin <rhutchin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 09:16:31 by rhutchin          #+#    #+#             */
-/*   Updated: 2019/06/13 14:25:14 by rhutchin         ###   ########.fr       */
+/*   Updated: 2019/06/13 20:07:29 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ void				ft_swap(int *a, int *b);
 
 int					ft_tolower(int c);
 int					ft_toupper(int c);
+char				*ft_strtoupper(char *str);
+char				*ft_strtolower(char *str);
 
 t_list				*ft_lstnew(const void *content, size_t content_size);
 void				ft_lstadd(t_list **alst, t_list *new);

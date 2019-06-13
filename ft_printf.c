@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhutchin <rhutchin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 08:54:40 by rhutchin          #+#    #+#             */
-/*   Updated: 2019/06/13 15:46:49 by rhutchin         ###   ########.fr       */
+/*   Updated: 2019/06/13 20:34:13 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,10 @@ int	checktype(const char *fmt, va_list ap)
 {
 	if (fmt[1] == '%')
 		ft_putchar('%');
-	if (fmt[1] == 'd' || fmt[1] == 'i')
-		{
-			int	tmp;
-
-			tmp = va_arg(ap, int);
-			// <--------------------------------------------------------------- I need to do some junk here to make octal do things. Hex kinda just works but I have no idea....
-			ft_putnbr(tmp);
-		}
-	if (fmt[1] == 'u')
-		ft_putnbr(va_arg(ap, unsigned int));//<-------------------------------- I am not sure of wtf should happen here.... it works but does not !work when a !unsigned-int is passed.
+	if (fmt[1] == 'd' || fmt[1] == 'i') //<------------------------------------ I need to do some junk here to make octal do things. Hex kinda just works but I have no idea....
+			ft_putnbr(va_arg(ap, int));
+	if (fmt[1] == 'u')//<------------------------------------------------------ I am not sure of wtf should happen here.... it works but does not !work when a !unsigned-int is passed.
+		ft_putnbr(va_arg(ap, unsigned int));
 //	if (fmt[1] == 'f' || fmt[1] == 'F')
 //		----------------------------------------------------------------------- double in normal (fixed-point) notation. f and F only differs in how the strings for an infinite number
 //																				or NaN are printed (inf, infinity and nan for f; INF, INFINITY and NAN for F). 
@@ -40,27 +34,36 @@ int	checktype(const char *fmt, va_list ap)
 //																				lower-case letters, G uses upper-case letters. This type differs slightly from fixed-point notation in that
 //																				insignificant zeroes to the right of the decimal point are not included. Also, the decimal point is not
 //																				included on whole numbers. 
-//	if (fmt[1] == 'x' || fmt[1] == 'X')
-//		----------------------------------------------------------------------- unsigned int as a hexadecimal number. x uses lower-case letters and X uses upper-case.
-//																				!!!!!!!!!!!!!WRITE ATOIBASE!!!!!!!!!!!!!!!
-//	if (fmt[1] == 'o')
-//		----------------------------------------------------------------------- unsigned int in octal.
-//																				!!!!!!!!!!!!!WRITE ATOIBASE!!!!!!!!!!!!!!!
+	if (fmt[1] == 'x' || fmt[1] == 'X')
+	{
+		char	*tmp;
+
+		tmp = ft_itoa_base((long)va_arg(ap, unsigned int), 16);
+		if(fmt[1] == 'X')
+			ft_putstr(ft_strtoupper(tmp));
+		else
+			ft_putstr(tmp);
+	}
+	if (fmt[1] == 'o')
+		ft_putstr(ft_itoa_base((long)va_arg(ap, unsigned int), 8));
 	if (fmt[1] == 's')
 		ft_putstr(va_arg(ap, char *));
 	if (fmt[1] == 'c')
 		ft_putchar(va_arg(ap, int));
-	if (fmt[1] == 'p')	//----------------------------------------------------- this does not work.
+	if (fmt[1] == 'p')
+		ft_putstr(ft_strjoin("0x", ft_itoa_base((long)va_arg(ap, void*), 16)));
+	if (fmt[1] == 'a' || fmt[1] == 'A')
 		{
-		ft_putstr("0x");
-		ft_putstr(ft_itoa_base((long)va_arg(ap, void *), 16));
+			char	*tmp;
+			
+			tmp = ft_strjoin("0x", ft_itoa_base((long)va_arg(ap, double), 16));
+			if (fmt[1] == 'A')
+				ft_putstr(ft_strtoupper(tmp));
+			else
+				ft_putstr(tmp);
 		}
-//		----------------------------------------------------------------------- void * (pointer to void) in an implementation-defined format.
-//	if (fmt[1] == 'a' || fmt[1] == 'A')
 //		----------------------------------------------------------------------- double in hexadecimal notation, starting with 0x or 0X. a uses lower-case letters, A uses upper-case
 //																				letters.[4][5] (C++11 iostreams have a hexfloat that works the same). 
-//	if (fmt[1] == 'n')
-//		----------------------------------------------------------------------- This currently works but is down in the 'main' ft_printf function sooooo... figure that out.
 	return (1);
 }
 
@@ -106,12 +109,12 @@ int	ft_printf(const char *fmt, ...)
 /************************************************************************************/
 int	main(void)
 {
-	char 	c = 'A';
-	char	*i = "things";
-	int		n;
+	char 			c = 'A';
+	char			*i = "String";
+	unsigned int	n = 873544224;
+	double			d = 873544224;
 
-	printf("printf prints the param as --->%p<--->%c<--->%%<---\n\n", &i, c);
-	ft_printf("ft_printf currently prints --->%p<--%n->%c<--->%%<---", &i, &n, c);
-	ft_printf("\n%d\n", n);
+	printf("\n\n   printf prints |%p|-|%c|-|%s|-|%%|-|%X|-|%o|-|%A|\n\n", &i, c, i, n, n, d);
+	ft_printf("ft_printf prints |%p|-|%c|-|%s|-|%%|-|%X|-|%o|-|%A|\n\n", &i, c, i, n, n, d);
 	return (0);
 }
