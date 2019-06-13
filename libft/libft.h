@@ -6,7 +6,7 @@
 /*   By: rhutchin <rhutchin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 09:16:31 by rhutchin          #+#    #+#             */
-/*   Updated: 2019/06/13 10:50:00 by rhutchin         ###   ########.fr       */
+/*   Updated: 2019/06/13 14:25:14 by rhutchin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct		s_list
 }					t_list;
 
 int					ft_atoi(char *str);
-char				*ft_itoa_base(int n, int base);
+char				*ft_itoa_base(long n, int base);
 
 void				*ft_bzero(void *str, size_t n);
 

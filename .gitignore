@@ -1,2 +1,6 @@
 ft_printf.h.gch
 .DS_Store
+ft_printf.o
+*.bin
+*.ipch
+a.out

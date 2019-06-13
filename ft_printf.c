@@ -6,12 +6,13 @@
 /*   By: rhutchin <rhutchin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 08:54:40 by rhutchin          #+#    #+#             */
-/*   Updated: 2019/06/13 12:17:30 by rhutchin         ###   ########.fr       */
+/*   Updated: 2019/06/13 14:49:24 by rhutchin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "ft_printf.h"
+
 
 int	checktype(const char *fmt, va_list ap)
 {
@@ -50,16 +51,13 @@ int	checktype(const char *fmt, va_list ap)
 		ft_putstr(va_arg(ap, char *));
 	if (fmt[1] == 'c')
 		ft_putchar(va_arg(ap, int));
-	if (fmt[1] == 'p')	//----------------------------------------------------- !!!!!!!!!!!!WRITE ITOABASE!!!!!!!!!!!!!!!!
-	{
-		void	*tmp;
-		char	*tmp2;
-		
-		tmp = va_arg(ap, void *);
-		tmp2 = ft_itoa_base((unsigned int)tmp, 16);
+	if (fmt[1] == 'p')	//----------------------------------------------------- this does not work.
+		{
+		long i = (long)va_arg(ap, void *);
 
-		ft_putnbr((unsigned int)tmp);
-	}
+		ft_putstr("0x");
+		ft_putstr(ft_itoa_base(i, 16));
+		}
 //		----------------------------------------------------------------------- void * (pointer to void) in an implementation-defined format.
 //	if (fmt[1] == 'a' || fmt[1] == 'A')
 //		----------------------------------------------------------------------- double in hexadecimal notation, starting with 0x or 0X. a uses lower-case letters, A uses upper-case
@@ -115,7 +113,7 @@ int	ft_printf(const char *fmt, ...)
 int	main(void)
 {
 	char 	c = 'A';
-	int 	i = 42;
+	char	*i = "things";
 
 	printf("*****************************************************************\nprintf prints the param as --->%p<--->%c<--->%%<---\n\n", &i, c);
 	ft_printf("ft_printf currently prints --->%p<--->%c<--->%%<---\n*****************************************************************\n", &i, c);
