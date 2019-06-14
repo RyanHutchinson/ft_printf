@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rhutchin <rhutchin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 08:54:40 by rhutchin          #+#    #+#             */
-/*   Updated: 2019/06/13 20:34:13 by marvin           ###   ########.fr       */
+/*   Updated: 2019/06/14 09:05:47 by rhutchin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,11 +110,16 @@ int	ft_printf(const char *fmt, ...)
 int	main(void)
 {
 	char 			c = 'A';
-	char			*i = "String";
-	unsigned int	n = 873544224;
-	double			d = 873544224;
+	char			*str = "String";
+	int				i = 42;
+	unsigned int	j = 42;
+	double			k = 42;
 
-	printf("\n\n   printf prints |%p|-|%c|-|%s|-|%%|-|%X|-|%o|-|%A|\n\n", &i, c, i, n, n, d);
-	ft_printf("ft_printf prints |%p|-|%c|-|%s|-|%%|-|%X|-|%o|-|%A|\n\n", &i, c, i, n, n, d);
+	printf("\n\n   printf prints |%p|-|%c|-|%s|-|%%|-|%x|-|%d|-|%O|-|%A|\n\n", &str, c, str, j, i, j, k);
+	ft_printf("ft_printf prints |%p|-|%c|-|%s|-|%%|-|%x|-|%d|-|%o|-|%A|\n\n", &str, c, str, j, i, j, k);
+
+
+	printf("FUCK");
+
 	return (0);
 }
