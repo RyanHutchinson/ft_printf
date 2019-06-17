@@ -6,7 +6,7 @@
 /*   By: rhutchin <rhutchin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 08:54:40 by rhutchin          #+#    #+#             */
-/*   Updated: 2019/06/17 13:57:23 by rhutchin         ###   ########.fr       */
+/*   Updated: 2019/06/17 15:25:18 by rhutchin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,21 +42,24 @@ int	checkflags(const char *fmt, t_format *format)
 	i = 1;
 	if (fmt[i] == '+' && !(isconversion(fmt[3])))
 	{
-		format->sign = 's';
-		i++;
+		format->sign = '+';
+		i += 1;
 	}
 	return(i);
 }
 
-// damnit I get now why you would want to store all the fomatting into a table. I need to have a rethink.
-
-int		checktype(const char *fmt, va_list ap, int i)
+int		checktype(const char *fmt, va_list ap, int i, t_format *format)
 {
 	if (fmt[i] == '%')
 		ft_putchar('%');
 	if (fmt[i] == 'd' || fmt[i] == 'D' || fmt[i] == 'i')
 	{
-		if(fmt[i + 1] == '0' && fmt[i + 2] != 'x')
+		if (format->sign == '+')
+		{
+			ft_putchar('+');
+			i--;
+		}
+		if(fmt[2] == '0' && fmt[3] != 'x')
 			ft_putstr(ft_itoa_base(va_arg(ap, int), 8));
 		else
 			ft_putnbr(va_arg(ap, int));
@@ -91,7 +94,7 @@ int	paramchecker(const char *fmt, va_list ap, t_format *format)
 	i += checkflags(fmt, format);
 	//i = checkwidth(); ------------------------------------------------------- Check total printable width and do stuff.
 	//i = checklength(); ------------------------------------------------------ Check the.... man, things happen here.
-	i += checktype(fmt, ap, i);
+	i += checktype(fmt, ap, i, format);
 	return(i);
 }
 
@@ -109,9 +112,7 @@ int	ft_printf(const char *fmt, ...)
 		if (fmt[i] != '%')
 			ft_putchar(fmt[i]);
 		if (fmt[i] == '%')
-			{
-				i += paramchecker(&fmt[i], ap, format);
-			}
+			i += paramchecker(&fmt[i], ap, format);
 		i++;
 	}
 	va_end(ap);
@@ -124,11 +125,11 @@ int	main(void)
 {
 	char 			c = 'A';
 	char			*str = "String";
-	int				i = 0x2A;
+	int				i = -42;
 	unsigned int	j = 42;
 
-	printf("\n\n   printf prints |%p|-|%c|-|%s|-|%%|-|%x|-|%+i|-|%o|\n\n", &str, c, str, j, i, j);
-	ft_printf("ft_printf prints |%p|-|%c|-|%s|-|%%|-|%x|-|%+i|-|%o|\n\n", &str, c, str, j, i, j);
+	printf("\n\n   printf prints |%p|-|%c|-|%s|-|%%|-|%x|-|%+i|-|%o|-|%u|\n\n", &str, c, str, j, i, j, j);
+	ft_printf("ft_printf prints |%p|-|%c|-|%s|-|%%|-|%x|-|%+i|-|%o|-|%u|\n\n", &str, c, str, j, i, j, j);
 
 
 	return (0);
