@@ -6,7 +6,7 @@
 /*   By: rhutchin <rhutchin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 08:54:40 by rhutchin          #+#    #+#             */
-/*   Updated: 2019/06/14 09:07:08 by rhutchin         ###   ########.fr       */
+/*   Updated: 2019/06/17 08:38:25 by rhutchin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,15 @@ int	checktype(const char *fmt, va_list ap)
 {
 	if (fmt[1] == '%')
 		ft_putchar('%');
-	if (fmt[1] == 'd' || fmt[1] == 'i') //<------------------------------------ I need to do some junk here to make octal do things. Hex kinda just works but I have no idea....
+	if (fmt[1] == 'd' || fmt[1] == 'i')
+	{
+		if(fmt[2] == '0' && fmt[3] != 'x')
+			ft_putstr(ft_itoa_base(va_arg(ap, int), 8));
+		else
 			ft_putnbr(va_arg(ap, int));
+	}
 	if (fmt[1] == 'u')//<------------------------------------------------------ I am not sure of wtf should happen here.... it works but does not !work when a !unsigned-int is passed.
 		ft_putnbr(va_arg(ap, unsigned int));
-//	if (fmt[1] == 'f' || fmt[1] == 'F')
-//		----------------------------------------------------------------------- double in normal (fixed-point) notation. f and F only differs in how the strings for an infinite number
-//																				or NaN are printed (inf, infinity and nan for f; INF, INFINITY and NAN for F). 
-//	if (fmt[1] == 'e' || fmt[1] == 'E')
-//		----------------------------------------------------------------------- double value in standard form ([-]d.ddd e[+/-]ddd). An E conversion uses the letter E (rather than e) to
-//																				introduce the exponent. The exponent always contains at least two digits; if the value is zero, the
-//																				exponent is 00. In Windows, the exponent contains three digits by default, e.g. 1.5e002, but this can be
-//																				altered by Microsoft-specific _set_output_format function. 
-//	if (fmt[1] == 'g' || fmt[1] == 'G')
-//		----------------------------------------------------------------------- double in either normal or exponential notation, whichever is more appropriate for its magnitude. g uses
-//																				lower-case letters, G uses upper-case letters. This type differs slightly from fixed-point notation in that
-//																				insignificant zeroes to the right of the decimal point are not included. Also, the decimal point is not
-//																				included on whole numbers. 
 	if (fmt[1] == 'x' || fmt[1] == 'X')
 	{
 		char	*tmp;
@@ -52,18 +44,6 @@ int	checktype(const char *fmt, va_list ap)
 		ft_putchar(va_arg(ap, int));
 	if (fmt[1] == 'p')
 		ft_putstr(ft_strjoin("0x", ft_itoa_base((long)va_arg(ap, void*), 16)));
-	if (fmt[1] == 'a' || fmt[1] == 'A')
-		{
-			char	*tmp;
-			
-			tmp = ft_strjoin("0x", ft_itoa_base((long)va_arg(ap, double), 16));
-			if (fmt[1] == 'A')
-				ft_putstr(ft_strtoupper(tmp));
-			else
-				ft_putstr(tmp);
-		}
-//		----------------------------------------------------------------------- double in hexadecimal notation, starting with 0x or 0X. a uses lower-case letters, A uses upper-case
-//																				letters.[4][5] (C++11 iostreams have a hexfloat that works the same). 
 	return (1);
 }
 
@@ -111,12 +91,12 @@ int	main(void)
 {
 	char 			c = 'A';
 	char			*str = "String";
-	int				i = 42;
+	int				i = 0;
+	scanf("%d", &i);
 	unsigned int	j = 42;
-	double			k = 42;
 
-	printf("\n\n   printf prints |%p|-|%c|-|%s|-|%%|-|%x|-|%d|-|%O|-|%A|\n\n", &str, c, str, j, i, j, k);
-	ft_printf("ft_printf prints |%p|-|%c|-|%s|-|%%|-|%x|-|%d|-|%o|-|%A|\n\n", &str, c, str, j, i, j, k);
+	printf("\n\n   printf prints |%p|-|%c|-|%s|-|%%|-|%x|-|%i|-|%o|\n\n", &str, c, str, j, i, j);
+	ft_printf("ft_printf prints |%p|-|%c|-|%s|-|%%|-|%x|-|%i|-|%o|\n\n", &str, c, str, j, i, j);
 
 
 	printf("FUCK");
