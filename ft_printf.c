@@ -6,25 +6,33 @@
 /*   By: rhutchin <rhutchin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 08:54:40 by rhutchin          #+#    #+#             */
-/*   Updated: 2019/06/17 08:38:25 by rhutchin         ###   ########.fr       */
+/*   Updated: 2019/06/17 09:08:19 by rhutchin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
+//you need to do the stuff to make wide chars do things.
+
 #include <stdio.h>
 #include "ft_printf.h"
+
+int	checkflags()
+{
+
+}
 
 int	checktype(const char *fmt, va_list ap)
 {
 	if (fmt[1] == '%')
 		ft_putchar('%');
-	if (fmt[1] == 'd' || fmt[1] == 'i')
+	if (fmt[1] == 'd' || fmt[1] == 'D' || fmt[1] == 'i')
 	{
 		if(fmt[2] == '0' && fmt[3] != 'x')
 			ft_putstr(ft_itoa_base(va_arg(ap, int), 8));
 		else
 			ft_putnbr(va_arg(ap, int));
 	}
-	if (fmt[1] == 'u')//<------------------------------------------------------ I am not sure of wtf should happen here.... it works but does not !work when a !unsigned-int is passed.
+	if (fmt[1] == 'u' || fmt[1] == 'U')
 		ft_putnbr(va_arg(ap, unsigned int));
 	if (fmt[1] == 'x' || fmt[1] == 'X')
 	{
@@ -36,7 +44,7 @@ int	checktype(const char *fmt, va_list ap)
 		else
 			ft_putstr(tmp);
 	}
-	if (fmt[1] == 'o')
+	if (fmt[1] == 'o' || fmt[1] == 'O')
 		ft_putstr(ft_itoa_base((long)va_arg(ap, unsigned int), 8));
 	if (fmt[1] == 's')
 		ft_putstr(va_arg(ap, char *));
@@ -91,12 +99,11 @@ int	main(void)
 {
 	char 			c = 'A';
 	char			*str = "String";
-	int				i = 0;
-	scanf("%d", &i);
+	int				i = 42;
 	unsigned int	j = 42;
 
-	printf("\n\n   printf prints |%p|-|%c|-|%s|-|%%|-|%x|-|%i|-|%o|\n\n", &str, c, str, j, i, j);
-	ft_printf("ft_printf prints |%p|-|%c|-|%s|-|%%|-|%x|-|%i|-|%o|\n\n", &str, c, str, j, i, j);
+	printf("\n\n   printf prints |%p|-|%c|-|%s|-|%%|-|%u|-|%i|-|%O|\n\n", &str, c, str, j, i, j);
+	ft_printf("ft_printf prints |%p|-|%c|-|%s|-|%%|-|%u|-|%i|-|%o|\n\n", &str, c, str, j, i, j);
 
 
 	printf("FUCK");
