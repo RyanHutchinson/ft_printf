@@ -6,7 +6,7 @@
 /*   By: rhutchin <rhutchin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 08:54:40 by rhutchin          #+#    #+#             */
-/*   Updated: 2019/06/17 15:25:18 by rhutchin         ###   ########.fr       */
+/*   Updated: 2019/06/17 15:47:02 by rhutchin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,7 @@
 //you need to do the stuff to make wide chars do things.
 
 #include <stdio.h>
-#include "ft_printf.h"
-
-t_format	*ft_newformat()
-{
-	t_format *new;
-
-	if(!(new = malloc(sizeof(t_format))))
-		return (NULL);
-	new->leftpad = 0;
-	new->rightpad = 0;
-	new->zero = 0;
-	new->sign = '0';
-	new->hash = '0';
-	return(new);
-}
+#include "./incl/ft_printf.h"
 
 int	isconversion(const char fmt)
 {
@@ -116,21 +102,5 @@ int	ft_printf(const char *fmt, ...)
 		i++;
 	}
 	va_end(ap);
-	return (0);
-}
-/************************************************************************************/
-/*************************************THE MAIN***************************************/
-/************************************************************************************/
-int	main(void)
-{
-	char 			c = 'A';
-	char			*str = "String";
-	int				i = -42;
-	unsigned int	j = 42;
-
-	printf("\n\n   printf prints |%p|-|%c|-|%s|-|%%|-|%x|-|%+i|-|%o|-|%u|\n\n", &str, c, str, j, i, j, j);
-	ft_printf("ft_printf prints |%p|-|%c|-|%s|-|%%|-|%x|-|%+i|-|%o|-|%u|\n\n", &str, c, str, j, i, j, j);
-
-
 	return (0);
 }
