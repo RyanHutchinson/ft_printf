@@ -6,7 +6,7 @@
 /*   By: rhutchin <rhutchin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 10:44:13 by rhutchin          #+#    #+#             */
-/*   Updated: 2019/06/17 15:48:16 by rhutchin         ###   ########.fr       */
+/*   Updated: 2019/06/18 11:11:33 by rhutchin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,4 @@ struct		s_format
 }typedef	t_format;
 
 t_format	*ft_newformat();
-int	ft_printf(const char *fmt, ...);
+int			ft_printf(const char *fmt, ...);

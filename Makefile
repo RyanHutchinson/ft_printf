@@ -6,11 +6,11 @@
 #    By: rhutchin <rhutchin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/05 11:36:38 by rhutchin          #+#    #+#              #
-#    Updated: 2019/06/17 15:47:25 by rhutchin         ###   ########.fr        #
+#    Updated: 2019/06/18 11:07:47 by rhutchin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ft_printf.a
+NAME = libftprintf.a
 
 SRC = ft_printf.c srcs/ft_newformat.c
 
