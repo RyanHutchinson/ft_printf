@@ -6,7 +6,7 @@
 /*   By: rhutchin <rhutchin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 08:54:40 by rhutchin          #+#    #+#             */
-/*   Updated: 2019/06/17 15:47:02 by rhutchin         ###   ########.fr       */
+/*   Updated: 2019/06/18 09:41:09 by rhutchin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,9 @@ int	paramchecker(const char *fmt, va_list ap, t_format *format)
 
 int	ft_printf(const char *fmt, ...)
 {
-	int	i;
-	va_list	ap;
-	t_format *format;
+	int			i;
+	va_list		ap;
+	t_format	*format;
 
 	i = 0;
 	va_start(ap, fmt);

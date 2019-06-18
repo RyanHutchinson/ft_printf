@@ -12,7 +12,7 @@ int	main(void)
 	unsigned int	j = 42;
 
 	printf("\n\n   printf prints |%p|-|%c|-|%s|-|%%|-|%x|-|%+i|-|%o|-|%u|\n\n", &str, c, str, j, i, j, j);
-	ft_printf("ft_printf prints |%p|-|%c|-|%s|-|%%|-|%x|-|%+i|-|%o|-|%u|\n\n", &str, c, str, j, i, j, j);
+	ft_printf("ft_printf prints |%p|-|%c|-|%s|-|%%|-|%x|-|%i|-|%o|-|%u|\n\n", &str, c, str, j, i, j, j);
 
 
 	return (0);
