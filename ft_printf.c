@@ -6,7 +6,7 @@
 /*   By: rhutchin <rhutchin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 08:54:40 by rhutchin          #+#    #+#             */
-/*   Updated: 2019/06/18 09:41:09 by rhutchin         ###   ########.fr       */
+/*   Updated: 2019/06/18 11:58:43 by rhutchin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,11 @@ int	paramchecker(const char *fmt, va_list ap, t_format *format)
 	int	i;
 	i = 0;
 	i += checkflags(fmt, format);
-	//i = checkwidth(); ------------------------------------------------------- Check total printable width and do stuff.
-	//i = checklength(); ------------------------------------------------------ Check the.... man, things happen here.
+	//i = checkwidth(); ------------------------------------------------------- Check minimum width.
+	//i = checkprecision(); --------------------------------------------------- Check the precision.
+	//i = checklength(); ------------------------------------------------------ Check length.
 	i += checktype(fmt, ap, i, format);
+	// I am thinking that instead of each check doing it's own printing, a printer function should be called which will print from a list of stored char*'s
 	return(i);
 }
 
