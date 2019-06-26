@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbotes <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/17 09:45:22 by mbotes            #+#    #+#             */
-/*   Updated: 2019/05/22 13:42:41 by mbotes           ###   ########.fr       */
+/*   Created: 2019/05/28 15:29:37 by mbotes            #+#    #+#             */
+/*   Updated: 2019/05/29 08:28:05 by mbotes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncpy(char *dst, const char *src, size_t len)
+char	*ft_strndup(const char *str, size_t len)
 {
-	size_t	loop;
-	char	*s;
+	char	*new;
 
-	s = (char *)(src);
-	loop = -1;
-	while (++loop < len && loop < ft_strlen(src) && src[loop])
-		dst[loop] = s[loop];
-	while (loop < len)
-		dst[loop++] = '\0';
-	return (dst);
+	if (!(new = ft_strnew(len)))
+		return (NULL);
+	ft_strncpy(new, str, len + 1);
+	new[len] = '\0';
+	return (new);
 }

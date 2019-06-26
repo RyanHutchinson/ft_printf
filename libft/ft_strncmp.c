@@ -3,28 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhutchin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mbotes <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/21 13:12:39 by rhutchin          #+#    #+#             */
-/*   Updated: 2019/05/29 08:52:30 by rhutchin         ###   ########.fr       */
+/*   Created: 2019/05/17 09:44:54 by mbotes            #+#    #+#             */
+/*   Updated: 2019/05/29 10:22:50 by mbotes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *str1, const char *str2, size_t n)
-{
-	size_t		i;
-	int			diff;
+#include <stdio.h>
 
-	i = 0;
-	if (n == 0)
+int	ft_strncmp(char const *s1, char const *s2, size_t n)
+{
+	size_t	loop;
+	int		diff;
+
+	loop = 0;
+	if (n <= 0 || s1 == NULL || s2 == NULL)
 		return (0);
-	diff = (unsigned char)str1[i] - (unsigned char)str2[i];
-	while ((diff == 0 && i < n - 1) && (str1[i] != '\0' && str2[i] != '\0'))
+	diff = (unsigned char)s1[loop] - (unsigned char)s2[loop];
+	while (diff == 0 && loop < n - 1 && s1[loop] && s2[loop])
 	{
-		i++;
-		diff = (unsigned char)str1[i] - (unsigned char)str2[i];
+		loop++;
+		diff = (unsigned char)s1[loop] - (unsigned char)s2[loop];
 	}
 	return (diff);
 }

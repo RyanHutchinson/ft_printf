@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_memcpr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhutchin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mbotes <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/22 12:24:18 by rhutchin          #+#    #+#             */
-/*   Updated: 2019/05/22 15:30:01 by rhutchin         ###   ########.fr       */
+/*   Created: 2019/05/17 09:38:08 by mbotes            #+#    #+#             */
+/*   Updated: 2019/05/28 07:32:41 by mbotes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 int	ft_memcmp(const void *str1, const void *str2, size_t n)
 {
-	unsigned char	*tmp1;
-	unsigned char	*tmp2;
-	size_t			i;
 	int				diff;
+	size_t			loop;
+	unsigned char	*ptr1;
+	unsigned char	*ptr2;
 
-	tmp1 = (unsigned char *)str1;
-	tmp2 = (unsigned char *)str2;
-	i = 0;
+	loop = 0;
 	diff = 0;
-	while (diff == 0 && i < n)
+	ptr1 = (unsigned char*)str1;
+	ptr2 = (unsigned char*)str2;
+	while (diff == 0 && loop < n)
 	{
-		diff = tmp1[i] - tmp2[i];
-		i++;
+		diff = ptr1[loop] - ptr2[loop];
+		loop++;
 	}
 	return (diff);
 }

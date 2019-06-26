@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdupdel.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhutchin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mbotes <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/28 13:39:49 by rhutchin          #+#    #+#             */
-/*   Updated: 2019/05/29 11:08:16 by rhutchin         ###   ########.fr       */
+/*   Created: 2019/06/05 16:09:06 by mbotes            #+#    #+#             */
+/*   Updated: 2019/06/05 16:10:06 by mbotes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strdupdel(char **str)
 {
-	char *tmp;
+	char	*tmp;
 
 	tmp = ft_strdup(*str);
 	ft_strdel(str);

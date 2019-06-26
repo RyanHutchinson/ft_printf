@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rhutchin <rhutchin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 09:16:31 by rhutchin          #+#    #+#             */
-/*   Updated: 2019/06/13 20:07:29 by marvin           ###   ########.fr       */
+/*   Updated: 2019/06/26 09:36:11 by rhutchin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
-int					ft_atoi(char *str);
-char				*ft_itoa_base(long n, int base);
+int					ft_atoi(const char *str);
+char				*ft_itoa_base(long value, int base);
 
-void				*ft_bzero(void *str, size_t n);
+void				ft_bzero(void *str, size_t n);
 
 int					ft_isalnum(int c);
 int					ft_isalpha(int c);
@@ -77,6 +77,7 @@ char				*ft_strmapi(const char *str, char (*f)(unsigned int, char));
 char				*ft_strncat(char *dest, const char *src, size_t n);
 int					ft_strncmp(const char *str1, const char *str2, size_t n);
 char				*ft_strncpy(char *dest, const char *src, size_t n);
+char				*ft_strndup(const char *str, size_t len);
 char				*ft_strnew(size_t n);
 char				*ft_strnstr(const char *str1, const char *str2, size_t n);
 char				*ft_strrchr(const char *str, int c);
@@ -89,8 +90,6 @@ void				ft_swap(int *a, int *b);
 
 int					ft_tolower(int c);
 int					ft_toupper(int c);
-char				*ft_strtoupper(char *str);
-char				*ft_strtolower(char *str);
 
 t_list				*ft_lstnew(const void *content, size_t content_size);
 void				ft_lstadd(t_list **alst, t_list *new);

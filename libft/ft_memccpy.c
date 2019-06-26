@@ -3,32 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhutchin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mbotes <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/22 08:14:39 by rhutchin          #+#    #+#             */
-/*   Updated: 2019/05/22 14:39:45 by rhutchin         ###   ########.fr       */
+/*   Created: 2019/05/17 09:36:38 by mbotes            #+#    #+#             */
+/*   Updated: 2019/05/21 10:13:02 by mbotes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memccpy(void *dest, const void *src, int c, size_t n)
+void	*ft_memccpy(void *dest, const void *src, int c, size_t len)
 {
-	unsigned char	*tmpdest;
-	unsigned char	*tmpsrc;
-	unsigned char	ch;
-	size_t			i;
+	unsigned char	*ptr;
+	unsigned char	*ptr2;
+	size_t			loop;
+	unsigned char	find;
 
-	ch = (unsigned char)c;
-	tmpdest = (unsigned char *)dest;
-	tmpsrc = (unsigned char *)src;
-	i = 0;
-	while (i < n)
+	loop = 0;
+	find = (unsigned char)c;
+	ptr = (unsigned char*)dest;
+	ptr2 = (unsigned char*)src;
+	while (loop < len)
 	{
-		tmpdest[i] = tmpsrc[i];
-		if (tmpsrc[i] == ch)
-			return ((void *)tmpdest + i + 1);
-		i++;
+		ptr[loop] = ptr2[loop];
+		if (ptr[loop] == find)
+			return ((void*)ptr + loop + 1);
+		loop++;
 	}
 	return (NULL);
 }
