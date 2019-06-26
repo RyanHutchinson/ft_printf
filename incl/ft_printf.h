@@ -6,7 +6,7 @@
 /*   By: rhutchin <rhutchin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 10:44:13 by rhutchin          #+#    #+#             */
-/*   Updated: 2019/06/18 11:11:33 by rhutchin         ###   ########.fr       */
+/*   Updated: 2019/06/26 10:41:05 by rhutchin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,15 @@
 
 struct		s_format	
 {
-	int		leftpad;
-	int		rightpad;
-	int		zero;
+	int		padding;
 	char	sign;
+	char	space;
+	int		zero;
 	char	hash;
+	int		width;
+	int		precision;
+	char	length;
+	int		type;
 }typedef	t_format;
 
 t_format	*ft_newformat();
