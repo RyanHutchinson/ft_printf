@@ -6,7 +6,7 @@
 /*   By: rhutchin <rhutchin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 08:54:40 by rhutchin          #+#    #+#             */
-/*   Updated: 2019/06/26 11:32:43 by rhutchin         ###   ########.fr       */
+/*   Updated: 2019/06/27 09:51:40 by rhutchin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,36 +15,34 @@
 
 #include <stdio.h>
 #include "./incl/ft_printf.h"
-
+/*
 int	isconversion(const char fmt)
 {
+	ft_strchr("%idDuUxX", fmt)
 	return(fmt == '%' || fmt == 'i' || fmt == 'd' || fmt == 'D' || fmt == 'u' || fmt == 'U' || fmt == 'x' || fmt == 'X' || fmt == 'o' || fmt == 'O' || fmt == 's' || fmt == 'c' || fmt == 'p');
 }
-
-int	checkflags(const char *fmt, t_format *format)
+*/
+int	checkflags(int i, const char *fmt, t_format *format)
 {
-	int i;
-
-	i = 1;
-	if (fmt[i] == '+' && !(isconversion(fmt[3])))
-	{
-		format->sign = '+';
-		i += 1;
-	}
-	return(i);
+}
+int	checkwidth(int i, const char *fmt, t_format *format)
+{
+}
+int	checkprecision(int i, const char *fmt, t_format *format)
+{
+}
+int	checklength(int i, const char *fmt, t_format *format)
+{
 }
 
-int		checktype(const char *fmt, va_list ap, int i, t_format *format)
+
+
+int	checktype(const char *fmt, va_list ap, int i, t_format *format)
 {
 	if (fmt[i] == '%')
 		ft_putchar('%');
 	if (fmt[i] == 'd' || fmt[i] == 'D' || fmt[i] == 'i')
 	{
-		if (format->sign == '+')
-		{
-			ft_putchar('+');
-			i--;
-		}
 		if(fmt[2] == '0' && fmt[3] != 'x')
 			ft_putstr(ft_itoa_base(va_arg(ap, int), 8));
 		else
@@ -76,13 +74,14 @@ int		checktype(const char *fmt, va_list ap, int i, t_format *format)
 int	paramchecker(const char *fmt, va_list ap, t_format *format)
 {
 	int	i;
+
 	i = 0;
-	i += checkflags(fmt, format);
-	i = checkwidth(fmt, format); //------------------------------------------------------- Check minimum width.
-	i = checkprecision(fmt, format); //--------------------------------------------------- Check the precision.
-	i = checklength(fmt, format); //------------------------------------------------------ Check length.
-	i = checktype(fmt, ap, i, format); //-------------------------------------- Check Type.
-	
+	i += checkflags(i, fmt, format); //---------------------------------------- Check formatting flags.
+	i += checkwidth(i, fmt, format); //---------------------------------------- Check minimum width.
+	i += checkprecision(i, fmt, format); //------------------------------------ Check the precision.
+	i += checklength(i, fmt, format); //--------------------------------------- Check length.
+	i += checktype(fmt, ap, i, format); //------------------------------------- Check Type.
+	printer(i, format);
 	return(i);
 }
 
@@ -96,11 +95,15 @@ int	ft_printf(const char *fmt, ...)
 	va_start(ap, fmt);
 	while (fmt[i] != '\0')
 	{
-		format = ft_newformat();
+		
 		if (fmt[i] != '%')
 			ft_putchar(fmt[i]);
 		if (fmt[i] == '%')
+		{
+			format = ft_newformat();
 			i += paramchecker(&fmt[i], ap, format);
+		}
+		ft_delformat(format); //----------------------------------------------- Write this junk
 		i++;
 	}
 	va_end(ap);
