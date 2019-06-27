@@ -6,15 +6,16 @@
 #    By: rhutchin <rhutchin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/05 11:36:38 by rhutchin          #+#    #+#              #
-#    Updated: 2019/06/26 09:50:22 by rhutchin         ###   ########.fr        #
+#    Updated: 2019/06/27 11:41:04 by rhutchin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
+NAME =	libftprintf.a
 
-SRC = ft_printf.c srcs/ft_newformat.c
+SRC =	ft_printf.c srcs/newformat.c srcs/checkflags.c srcs/checkwidth.c \
+		srcs/checkprecision.c srcs/checklength.c srcs/checktype.c
 
-OBJ = ft_printf.o ft_newformat.o
+OBJ = *.o
 
 INCL = ./incl/ft_printf.h libft/libft.a
 
