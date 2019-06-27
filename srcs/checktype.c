@@ -6,7 +6,7 @@
 /*   By: rhutchin <rhutchin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 11:34:40 by rhutchin          #+#    #+#             */
-/*   Updated: 2019/06/27 12:02:20 by rhutchin         ###   ########.fr       */
+/*   Updated: 2019/06/27 14:45:19 by rhutchin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,20 @@
 
 int	checktype(int i, const char *fmt, t_format *format, va_list ap)
 {
-	if (fmt[i] == '%')
-		format->type = 'c';
-	if (fmt[i] == 'd' || fmt[i] == 'D' || fmt[i] == 'i')
+	if (fmt[i++] == '%')
 	{
-		if(fmt[2] == '0' && fmt[3] != 'x')
-			ft_putstr(ft_itoa_base(va_arg(ap, int), 8));
+		format->type = "char";
+		format->value = '%';
+	}
+	else if (fmt[i] == 'd' || fmt[i] == 'D' || fmt[i] == 'i')
+	{
+		if(fmt[i + 1] == '0' && fmt[i + 2] != 'x')
+		{
+			format->type = "octal";
+			format->value = ft_itoa_base(va_arg(ap, int), 8);
+		}
 		else
+		//	format->
 			ft_putnbr(va_arg(ap, int));
 	}
 	if (fmt[i] == 'u' || fmt[i] == 'U')

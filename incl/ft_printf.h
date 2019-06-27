@@ -6,7 +6,7 @@
 /*   By: rhutchin <rhutchin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 10:44:13 by rhutchin          #+#    #+#             */
-/*   Updated: 2019/06/27 12:10:33 by rhutchin         ###   ########.fr       */
+/*   Updated: 2019/06/27 13:09:48 by rhutchin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ struct		s_format
 {
 	int		padding;
 	char	sign;
-	char	space;
+	int		space;
 	int		zero;
 	char	hash;
 	int		width;
 	int		precision;
 	char	length;
-	char	type;
-	void*	value;
+	char	*type;
+	char	*value;
 }typedef	t_format;
 
 int			ft_printf(const char *fmt, ...);

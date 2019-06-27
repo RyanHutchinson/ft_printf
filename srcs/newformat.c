@@ -6,7 +6,7 @@
 /*   By: rhutchin <rhutchin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 15:36:50 by rhutchin          #+#    #+#             */
-/*   Updated: 2019/06/27 11:30:03 by rhutchin         ###   ########.fr       */
+/*   Updated: 2019/06/27 13:03:14 by rhutchin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,16 @@ t_format	*newformat()
 
 	if(!(new = malloc(sizeof(t_format))))
 		return (NULL);
-	new->padding = 0;
+	new->padding = NULL;
 	new->sign = NULL;
-	new->space = ' ';
-	new->zero = 0;
+	new->space = NULL;
+	new->zero = NULL;
 	new->hash = NULL;
-	new->width = 0;
-	new->precision = 0;
+	new->width = NULL;
+	new->precision = NULL;
 	new->length = NULL;
-	new->type = 0;
+	new->type = NULL;
+	new->value = NULL;
 
 	return(new);
 }
