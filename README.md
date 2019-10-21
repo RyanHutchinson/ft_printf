@@ -1,2 +1,6 @@
 # ft_printf
-Recreation of the c standard printf function.
+
+Please Note!!!!!!!!!!!!
+
+
+This is a WIP... do NOT try and use for anything other than reference of my unusual thought patterns...
